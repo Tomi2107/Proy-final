@@ -1,5 +1,5 @@
 Web
-https://tomi2107.github.io/Proyecto-final/
+https://tomi2107.github.io/Proy-final
 
 Usuarios Se puede registrar y entrar pero para rol=admin tiene que usar
 
