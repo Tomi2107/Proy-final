@@ -4,13 +4,19 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const API_URL = "https://68056fddca467c15be691494.mockapi.io/productos";
-const usuario = JSON.parse(localStorage.getItem("usuario"));
+
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [usuario, setUsuario] = useState(null);
 
+  useEffect(() => {
+    const storedUsuario = JSON.parse(localStorage.getItem("usuario"));
+    setUsuario(storedUsuario);
+  }, []);
+  
   const fetchProductos = () => {
     fetch(API_URL)
       .then((res) => res.json())

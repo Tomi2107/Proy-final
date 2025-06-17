@@ -17,6 +17,7 @@ import Perfil from "./Usuarios/Perfil";
 import Settings from "./Usuarios/Settings";
 import Listado from "./Listado";
 import RequireAuth from "./Usuarios/RequireAuth";
+import { Routes, Route  } from "react-router-dom";
 
 import usuariosData from "./../data/usuarios.json";
 
@@ -28,21 +29,20 @@ const Body = () => {
   }, []);
 
   return (
-    <Router>
       <main>
       <Header />
       <Container className="my-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Productos />} />
-<Route
-  path="/carrito"
-  element={
-    <RequireAuth>
-      <Carrito />
-    </RequireAuth>
-  }
-/>
+          <Route
+            path="/carrito"
+            element={
+              <RequireAuth>
+                <Carrito />
+              </RequireAuth>
+            }
+          />
           <Route path="/registro" element={<Registro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/api" element={<Api />} />
@@ -74,7 +74,6 @@ const Body = () => {
               </RequireAuth>
             }
           />
-
           {/* Ruta protegida: solo para admins */}
           <Route
             path="/admin"
@@ -88,7 +87,6 @@ const Body = () => {
       </Container>
       <Footer />
       </main>
-    </Router>
   );
 };
 
