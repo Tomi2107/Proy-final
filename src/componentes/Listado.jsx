@@ -33,10 +33,13 @@ const Listado = () => {
   {productos.map((producto) => (
     <ListGroup.Item key={producto.id} className="d-flex align-items-center justify-content-between">
       <div className="d-flex flex-column me-3" style={{ flex: 1 }}>
-        <h5>{producto.name}</h5>
-        <p className="mb-0" style={{ fontSize: "0.9rem", color: "#6c757d" }}>{producto.description}</p>
+        <h5>{producto.nombre}</h5>
+        <p className="mb-0" style={{ fontSize: "0.9rem", color: "#6c757d" }}>{producto.descripcion}</p>
+        <strong>Stock: {producto.stock}</strong>
       </div>
-      <strong>Precio: ${producto.price || 100}</strong>
+      <strong>Precio: ${producto.precio || 100}</strong>
+      <br />
+      
     </ListGroup.Item>
   ))}
 </ListGroup>

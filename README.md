@@ -1,5 +1,5 @@
 Web
-https://tomi2107.github.io/Pre-entrega/
+https://tomi2107.github.io/Proyecto-final/
 
 Usuarios Se puede registrar y entrar pero para rol=admin tiene que usar
 
@@ -24,17 +24,11 @@ Crear proyecto react vite con JS, en app.js solo la etiqueta bodi, en componente
 🧱 FASE 1: Configuración del Proyecto
 Crear el proyecto React con Vite (JS):
 
-bash
-Copiar
-Editar
 npm create vite@latest mi-proyecto --template react
 cd mi-proyecto
 npm install
 Estructura de carpetas:
 
-pgsql
-Copiar
-Editar
 /src
   ├── App.jsx
   ├── main.jsx
@@ -55,9 +49,6 @@ Editar
   │   └── carrito.json
 Instalar React Router:
 
-bash
-Copiar
-Editar
 npm install react-router-dom
 📐 FASE 2: Estructura Básica y Navegación
 Modificar App.jsx: Solo dejar la etiqueta <body> con Header, Footer, y un <Outlet /> para las rutas.
@@ -216,23 +207,12 @@ Curiosidades: Bored API
 🧭 Actualizar las rutas:
 Agregar a App.jsx o Routes.jsx:
 
-jsx
-Copiar
-Editar
-
 🔧 Actualización Final del Plan del Proyecto
 🔌 Tecnologías y Librerías a Usar
 Instalaremos estas dependencias:
 
-bash
-Copiar
-Editar
 npm install react-router-dom react-bootstrap bootstrap sweetalert2
 Y en main.jsx importamos Bootstrap:
-
-jsx
-Copiar
-Editar
 
 🔁 Nuevas Funcionalidades Agregadas
 ✅ Props
@@ -262,9 +242,6 @@ Confirmar eliminación de productos (Admin)
 
 Ejemplo:
 
-jsx
-Copiar
-Editar
 import Swal from 'sweetalert2';
 Swal.fire("Producto agregado al carrito", "", "success");
 
@@ -368,9 +345,6 @@ export default defineConfig({
 
 ✅ 8. Agregar los scripts a package.json
 
-json
-Copiar
-Editar
 "scripts": {
   "dev": "vite",
   "build": "vite build",
@@ -386,7 +360,7 @@ npm run deploy
 
 ✅ 10. Activar GitHub Pages
 
-Entra a tu repositorio en GitHub
+Entra a tu repositorio en GnoitHub
 
 Ve a Settings > Pages
 
@@ -396,6 +370,6 @@ Guardá
 
 ✅ 11. ¡Listo! Tu página estará publicada en:
 
-https://TU_USUARIO.github.io/Proy-final/
+https://USUARIO.github.io/Proy-final/
 
 
