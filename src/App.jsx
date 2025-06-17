@@ -3,7 +3,6 @@ import React from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Body from "./componentes/Body"
 import './componentes/Usuarios/Perfiles.css'
-import { BrowserRouter as Router } from "react-router-dom";
 
 
 import './App.css'

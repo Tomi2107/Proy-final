@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
-    "homepage": "https://github.com/Tomi2107/Proy-final"
+    "homepage": "https://tomi2107.github.io/Proy-final/"
   },
   "dependencies": {
     "axios": "^1.10.0",
