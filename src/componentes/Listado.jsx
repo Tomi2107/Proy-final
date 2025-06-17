@@ -1,4 +1,3 @@
-// src/componentes/Listado.jsx
 import React, { useEffect, useState } from "react";
 import { ListGroup, Spinner, Alert } from "react-bootstrap";
 
