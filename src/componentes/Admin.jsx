@@ -1,4 +1,3 @@
-// ===================== Admin.jsx =====================
 import React, { useEffect, useState } from "react";
 import { Container, Form, Button, Table, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
