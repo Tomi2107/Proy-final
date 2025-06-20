@@ -1,13 +1,14 @@
-// ===================== Productos.jsx =====================
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet'; // 💡 SEO
+import { Link } from 'react-router-dom';
 
 const API_URL = "https://68056fddca467c15be691494.mockapi.io/productos";
 
-
 const Productos = () => {
   const [productos, setProductos] = useState([]);
+  const [busqueda, setBusqueda] = useState('');
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
   const [usuario, setUsuario] = useState(null);
@@ -58,9 +59,8 @@ const Productos = () => {
     });
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    window.dispatchEvent(new Event("carritoActualizado")); // 🔔 notifica a otros componentes
+    window.dispatchEvent(new Event("carritoActualizado"));
     fetchProductos();
-
 
     Swal.fire({
       title: '¡Producto agregado!',
@@ -73,33 +73,67 @@ const Productos = () => {
     });
   };
 
+  const productosFiltrados = productos.filter(p =>
+    p.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
   if (cargando) return <p className="m-4">Cargando productos...</p>;
   if (error) return <p className="m-4 text-danger">{error}</p>;
 
   return (
     <Container className="mt-4">
+      {/* SEO con React Helmet */}
+      <Helmet>
+        <title>Productos | Talento Lab</title>
+        <meta name="description" content="Explora nuestra selección de productos únicos y agregalos al carrito." />
+      </Helmet>
+
       <h2 className="mb-4">Listado de Productos</h2>
+
+      <Form className="mb-4">
+        <Form.Control
+          type="text"
+          placeholder="Buscar producto por nombre..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          aria-label="Buscar productos"
+        />
+      </Form>
+
       <Row>
-        {productos.map((producto) => (
-          <Col key={producto.id} sm={12} md={6} lg={4} className="mb-4">
-            <Card>
-                <Card.Img
-                  variant="top"
-                  src={producto.imagen || "https://picsum.photos/110/?random"}
-                  style={{ height: "200px", objectFit: "cover" }}
-                />              <Card.Body>
-                <Card.Title>{producto.nombre}</Card.Title>
-                <Card.Text>Precio: ${producto.precio}</Card.Text>
-                <Card.Text>Stock: {producto.stock}</Card.Text>
-                {usuario && (
-                  <Button variant="primary" onClick={() => agregarAlCarrito(producto)} disabled={producto.stock === 0}>
-                    Agregar al carrito
-                  </Button>
-                )}
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
+        {productosFiltrados.length === 0 ? (
+          <p>No se encontraron productos con ese nombre.</p>
+        ) : (
+          productosFiltrados.map((producto) => (
+            <Col key={producto.id} sm={12} md={6} lg={4} className="mb-4">
+              <Card>
+                <Link to={`/productos/${producto.id}`}>
+                  <Card.Img
+                    variant="top"
+                    src={producto.imagen || "https://picsum.photos/110/?random"}
+                    style={{ height: "200px", objectFit: "cover" }}
+                    alt={`Imagen de ${producto.nombre}`}
+                  />
+                </Link>
+                <Card.Body>
+                  <Card.Title>{producto.nombre}</Card.Title>
+                  <Card.Text>Precio: ${producto.precio}</Card.Text>
+                  <Card.Text>Stock: {producto.stock}</Card.Text>
+                  {usuario && (
+                    <Button
+                      variant="primary"
+                      onClick={() => agregarAlCarrito(producto)}
+                      disabled={producto.stock === 0}
+                      aria-label={`Agregar ${producto.nombre} al carrito`}
+                    >
+                      Agregar al carrito
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        )}
       </Row>
     </Container>
   );

@@ -8,6 +8,7 @@ import Contacto from './Contacto';
 import Nosotros from './Nosotros';
 import Home from "./Home";
 import Productos from "./Productos";
+import DetalleProducto from './DetalleProducto'; // ajustá el path si cambia
 import Carrito from "./Carrito";
 import Registro from "./Usuarios/Registro";
 import Login from "./Usuarios/Login";
@@ -35,6 +36,7 @@ const Body = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Productos />} />
+          <Route path="/productos/:id" element={<DetalleProducto />} />
           <Route
             path="/carrito"
             element={
