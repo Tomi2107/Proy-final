@@ -3,8 +3,10 @@ import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet'; // 💡 SEO
 import { Link } from 'react-router-dom';
+import Paginador from './Paginador';
 
 const API_URL = "https://68056fddca467c15be691494.mockapi.io/productos";
+
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
@@ -73,9 +75,16 @@ const Productos = () => {
     });
   };
 
+  const [paginaActual, setPaginaActual] = useState(1);
+  const productosPorPagina = 20;
+
   const productosFiltrados = productos.filter(p =>
-    p.nombre.toLowerCase().includes(busqueda.toLowerCase())
+      p.nombre.toLowerCase().includes(busqueda.toLowerCase())
   );
+
+  const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
+  const indiceInicial = (paginaActual - 1) * productosPorPagina;
+  const productosEnPagina = productosFiltrados.slice(indiceInicial, indiceInicial + productosPorPagina);
 
   if (cargando) return <p className="m-4">Cargando productos...</p>;
   if (error) return <p className="m-4 text-danger">{error}</p>;
@@ -101,10 +110,10 @@ const Productos = () => {
       </Form>
 
       <Row>
-        {productosFiltrados.length === 0 ? (
-          <p>No se encontraron productos con ese nombre.</p>
-        ) : (
-          productosFiltrados.map((producto) => (
+          {productosEnPagina.length === 0 ? (
+            <p>No se encontraron productos con ese nombre.</p>
+          ) : (
+            productosEnPagina.map((producto) => (
             <Col key={producto.id} sm={12} md={6} lg={4} className="mb-4">
               <Card>
                 <Link to={`/productos/${producto.id}`}>
@@ -135,6 +144,12 @@ const Productos = () => {
           ))
         )}
       </Row>
+    <Paginador
+      totalPaginas={totalPaginas}
+      paginaActual={paginaActual}
+      cambiarPagina={setPaginaActual}
+    />
+
     </Container>
   );
 };

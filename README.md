@@ -1,3 +1,5 @@
+Probar con fakestoreapi y agregar styles.components
+
 Web
 https://tomi2107.github.io/Proy-final
 
